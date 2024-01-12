@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading Section</title>
+    <link rel="icon" type="image/png" href="rainbow-flag.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        integrity="sha384-rbsM2B2Sc9U3I72CAv4PjLrL6Js3MZYO+L8a7vlTXAA7TWaQD33+1z41e2a5zwwl" crossorigin="anonymous">
+    <style>
+    .nav-center {
+        display: flex;
+        justify-content: center;
+        gap: 150px; /* Adjust the gap as needed */
+    }
+
+    .nav-bar {
+        list-style-type: none;
+        padding: 0;
+        text-align: center;
+    }
+
+    .nav-item {
+        display: inline;
+        margin: 0 10px;
+    }
+
+    .nav-link {
+        text-decoration: none;
+        color: black;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+    }
+
+    .book {
+        margin-bottom: 20px;
+        display: flex; /* Use flexbox to align items */
+        align-items: center; /* Center items vertically */
+    }
+
+    .book img {
+        max-width: 100%;
+        height: auto;
+        max-height: 50vh; /* Set maximum height as 25% of the viewport height */
+        margin-right: 20px; /* Add margin to separate image and text */
+    }
+
+    .book-details {
+        flex: 1; /* Expand to fill available space */
+    }
+
+    .book-details h3,
+    .book-details p {
+        margin: 0; /* Remove default margin for h4 and p elements */
+    }
+
+.book-details-hidden {
+            display: none;
+    }
+
+   .book-details-content {
+        color: black;
+    }
+
+    .book-details-content h3 {
+        color: black;
+    }
+
+    .book-details-content p {
+        color: black;
+    }
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 600px;
+    margin: auto; /* Add margin auto to center the modal */
+    position: relative; /* Set position to relative */
+}
+
+.modal-exit {
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+}
+
+.reading-section {
+    padding: 50px;
+    background: linear-gradient(to right, #FFEB3B, #FF9800, #D32F2F, #673AB7, #311B92, #00C853); /* Lighter Pride colors */
+    color: #fff; /* Set text color to white for better contrast */
+}
+
+        .book {
+    background-color: rgba(255, 255, 255, 0.8); /* Use a semi-transparent white background for the book container */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+        .book:hover {
+    transform: scale(1.05);
+}
+
+        .book img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .book-details {
+            text-align: left;
+        }
+
+        .book-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+color: black;
+        }
+
+        .book-author {
+            color: #6c757d; /* Gray color for author */
+            margin-bottom: 20px;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-exit {
+            color: #000;
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="text-center p-5">
+        <h1>ConnectSociety</h1>
+    </div>
+    <!-- Nav bar -->
+    <div class="nav-bar">
+        <ul class="nav nav-center">
+            <li class="nav-item">
+                <a class="nav-link" href="connect society.html">
+                    Home
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="reading.html">
+                    Readings
+                </a>
+            </li>
+           
+            <li class="nav-item">
+                <div class="input-nav">
+                    <div class="search-input">
+    <input type="text" id="searchInput" placeholder="Search">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+        class="bi bi-search" viewBox="0 0 16 16" onclick="searchBooks()">
+        <path
+            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+    </svg>
+</div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <div class="icons-nav">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M9.19795 21.5H13.198V13.4901H16.8021L17.198 9.50977H13.198V7.5C13.198 6.94772 13.6457 6.5 14.198 6.5H17.198V2.5H14.198C11.4365 2.5 9.19795 4.73858 9.19795 7.5V9.50977H7.19795L6.80206 13.4901H9.19795V21.5Z"
+                            fill="currentColor" />
+                    </svg>
+
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M12 7C9.23858 7 7 9.23858 7 12C7 14.7614 9.23858 17 12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7ZM9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12Z"
+                            fill="currentColor" />
+                        <path
+                            d="M18 5C17.4477 5 17 5.44772 17 6C17 6.55228 17.4477 7 18 7C18.5523 7 19 6.55228 19 6C19 5.44772 18.5523 5 18 5Z"
+                            fill="currentColor" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M5 1C2.79086 1 1 2.79086 1 5V19C1 21.2091 2.79086 23 5 23H19C21.2091 23 23 21.2091 23 19V5C23 2.79086 21.2091 1 19 1H5ZM19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z"
+                            fill="currentColor" />
+                    </svg>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter-filled"
+                        width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path
+                            d="M14.058 3.41c-1.807 .767 -2.995 2.453 -3.056 4.38l-.002 .182l-.243 -.023c-2.392 -.269 -4.498 -1.512 -5.944 -3.531a1 1 0 0 0 -1.685 .092l-.097 .186l-.049 .099c-.719 1.485 -1.19 3.29 -1.017 5.203l.03 .273c.283 2.263 1.5 4.215 3.779 5.679l.173 .107l-.081 .043c-1.315 .663 -2.518 .952 -3.827 .9c-1.056 -.04 -1.446 1.372 -.518 1.878c3.598 1.961 7.461 2.566 10.792 1.6c4.06 -1.18 7.152 -4.223 8.335 -8.433l.127 -.495c.238 -.993 .372 -2.006 .401 -3.024l.003 -.332l.393 -.779l.44 -.862l.214 -.434l.118 -.247c.265 -.565 .456 -1.033 .574 -1.43l.014 -.056l.008 -.018c.22 -.593 -.166 -1.358 -.941 -1.358l-.122 .007a.997 .997 0 0 0 -.231 .057l-.086 .038a7.46 7.46 0 0 1 -.88 .36l-.356 .115l-.271 .08l-.772 .214c-1.336 -1.118 -3.144 -1.254 -5.012 -.554l-.211 .084z"
+                            stroke-width="0" fill="currentColor" />
+                    </svg>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-pinterest"
+                        width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M8 20l4 -9" />
+                        <path d="M10.7 14c.437 1.263 1.43 2 2.55 2c2.071 0 3.75 -1.554 3.75 -4a5 5 0 1 0 -9.7 1.7" />
+                        <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                    </svg>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+<hr class="black-horizontal-line">
+
+
+    <!-- Add your content for the Reading section here -->
+<div class="reading-section">
+
+
+<!-- Reading Section: 4-column grid -->
+<div class="container">
+    <div class="row">
+        <!-- Book 1 -->
+        <div class="col-md-3">
+            <div class="book" onclick="openModal(1)">
+                <img src="https://www.pride.com/media-library/image.jpg?id=31096918" alt="Book 1 Cover" class="img-fluid">
+                <div class="book-details">
+                    <h3 class="book-title">Giovanni's Room</h3>
+                    <p class="book-author">Author: James Baldwin</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Book 2 -->
+        <div class="col-md-3">
+            <div class="book" onclick="openModal(2)">
+                <img src="https://qnews.com.au/wp-content/uploads/2019/11/19-11-26-WeAreEverywhere-bookcover-369x593.jpg"
+                    alt="Book 2 Cover" class="img-fluid">
+                <div class="book-details">
+                    <h3 class="book-title">WE ARE EVERYWHERE</h3>
+                    <p class="book-author">Author: Matthew Riemer and Leighton Brown</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Book 3 -->
+        <div class="col-md-3">
+            <div class="book" onclick="openModal(3)">
+                <img src="https://firestorm.coop/img/products/14817BeyondtheGenderBinary.jpg"
+                    alt="Book 3 Cover" class="img-fluid">
+                <div class="book-details">
+                    <h3 class="book-title">BEYOND THE GENDER BINARY</h3>
+                    <p class="book-author">Author: Alok Vaid-Menon</p>
+                </div>
+            </div>
+        </div>
+
+<!-- Book 4 -->
+        <div class="col-md-3">
+            <div class="book" onclick="openModal(4)">
+                <img src="https://cdn10.bigcommerce.com/s-g9n04qy/products/612153/images/626668/612HgKIE0aL._SL1300___96117.1658865258.1280.1280.jpg?c=2"
+                    alt="Book 3 Cover" class="img-fluid">
+                <div class="book-details">
+<h3 class="book-title">It Feels Good to Be Yourself: A Book about Gender Identity</h3>
+<p class="book-author">Author: Theresa Thorn</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+    <!-- Modal for Book Details -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-exit" onclick="closeModal()">&times;</span>
+            <div class="book-details-content">
+                <h3 id="modalTitle"></h3>
+                <p id="modalAuthor"></p>
+                <p id="modalDescription"></p>
+            </div>
+        </div>
+    </div>
+
+
+   <!-- Footer -->
+<footer>
+    <!-- Drop me a line -->
+    <div style="border-top: 1px solid black; margin-top: 30px; display: flex; justify-content: center;">
+        <div style="display: flex; flex-direction: column; justify-content: center; ">
+            <div style="display: flex;justify-content: center;margin: 50px; cursor: pointer;" onclick="scrollToTop()">
+                <svg preserveAspectRatio="none" data-bbox="72.5 20 55 160" viewBox="72.5 20 55 160" height="40" width="15"
+                    xmlns="http://www.w3.org/2000/svg" data-type="shape" role="img" aria-label="Back to top">
+                    <g>
+                        <path
+                            d="M127.5 49.186L100 20 72.5 49.186l2.957 2.808 22.116-23.476V180h4.854V28.518l22.116 23.476 2.957-2.808z">
+                        </path>
+                    </g>
+                </svg>
+            </div>
+            <h1 class="small-h1">ConnectSociety</h1>
+<div class="icons">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M9.19795 21.5H13.198V13.4901H16.8021L17.198 9.50977H13.198V7.5C13.198 6.94772 13.6457 6.5 14.198 6.5H17.198V2.5H14.198C11.4365 2.5 9.19795 4.73858 9.19795 7.5V9.50977H7.19795L6.80206 13.4901H9.19795V21.5Z"
+                        fill="currentColor" />
+                </svg>
+
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M12 7C9.23858 7 7 9.23858 7 12C7 14.7614 9.23858 17 12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7ZM9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12Z"
+                        fill="currentColor" />
+                    <path
+                        d="M18 5C17.4477 5 17 5.44772 17 6C17 6.55228 17.4477 7 18 7C18.5523 7 19 6.55228 19 6C19 5.44772 18.5523 5 18 5Z"
+                        fill="currentColor" />
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M5 1C2.79086 1 1 2.79086 1 5V19C1 21.2091 2.79086 23 5 23H19C21.2091 23 23 21.2091 23 19V5C23 2.79086 21.2091 1 19 1H5ZM19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z"
+                        fill="currentColor" />
+                </svg>
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter-filled"
+                    width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path
+                        d="M14.058 3.41c-1.807 .767 -2.995 2.453 -3.056 4.38l-.002 .182l-.243 -.023c-2.392 -.269 -4.498 -1.512 -5.944 -3.531a1 1 0 0 0 -1.685 .092l-.097 .186l-.049 .099c-.719 1.485 -1.19 3.29 -1.017 5.203l.03 .273c.283 2.263 1.5 4.215 3.779 5.679l.173 .107l-.081 .043c-1.315 .663 -2.518 .952 -3.827 .9c-1.056 -.04 -1.446 1.372 -.518 1.878c3.598 1.961 7.461 2.566 10.792 1.6c4.06 -1.18 7.152 -4.223 8.335 -8.433l.127 -.495c.238 -.993 .372 -2.006 .401 -3.024l.003 -.332l.393 -.779l.44 -.862l.214 -.434l.118 -.247c.265 -.565 .456 -1.033 .574 -1.43l.014 -.056l.008 -.018c.22 -.593 -.166 -1.358 -.941 -1.358l-.122 .007a.997 .997 0 0 0 -.231 .057l-.086 .038a7.46 7.46 0 0 1 -.88 .36l-.356 .115l-.271 .08l-.772 .214c-1.336 -1.118 -3.144 -1.254 -5.012 -.554l-.211 .084z"
+                        stroke-width="0" fill="currentColor" />
+                </svg>
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-pinterest" width="24"
+                    height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M8 20l4 -9" />
+                    <path d="M10.7 14c.437 1.263 1.43 2 2.55 2c2.071 0 3.75 -1.554 3.75 -4a5 5 0 1 0 -9.7 1.7" />
+                    <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                </svg>
+            </div>
+
+        <!-- About Us -->
+        <div class="about-us">
+            <h3>About Us</h3>
+            <p>
+                ConnectSociety is a society for each of us. <br>Feel free to have equal opportunities and rights. <br> Join us in our mission to connect
+                people <br> and build a world for everyone.
+            </p>
+        </div>
+ 
+
+    </div>
+    </footer>
+    <script>
+function toggleBookDetails(bookNumber) {
+            const bookDetails = document.querySelector(`.book-details-${bookNumber}`);
+            bookDetails.classList.toggle('book-details-hidden');
+        }
+        function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+        function handleEmptyInput2(event) {
+
+            const input = event.target.parentElement
+
+            if (event.target.value.trim() === "") {
+                input.classList.add("invalid");
+                input.classList.remove("valid");
+            }
+        }
+        function handleFilledInput2(event) {
+
+            const input = event.target.parentElement
+            if (event.target.value.trim() !== "") {
+                input.classList.add("valid");
+                input.classList.remove("invalid");
+            }
+        }
+        function toggleLike(event) {
+            const heart = event.target
+            const parent = event.target.parentElement.parentElement.parentElement
+            const isLiked = heart.classList.contains('liked')
+            parent.firstElementChild.innerHTML = parseInt(parent.firstElementChild.innerHTML) + (isLiked ? -1 : 1)
+            heart.classList.toggle('liked')
+        }
+
+function openModal(bookNumber) {
+        const modal = document.getElementById('myModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalAuthor = document.getElementById('modalAuthor');
+        const modalDescription = document.getElementById('modalDescription');
+
+        if (bookNumber === 1) {
+            modalTitle.textContent = "Giovanni's Room";
+            modalAuthor.textContent = "Author: James Baldwin";
+            modalDescription.textContent = "In the 1950s Paris of American expatriates, liaisons, and violence, a young man finds himself caught between desire and conventional morality. David is a young American expatriate who has just proposed marriage to his girlfriend, Hella. While she is away on a trip, David meets a bartender named Giovanni to whom he is drawn in spite of himself. Soon the two are spending the night in Giovanni’s curtainless room, which he keeps dark to protect their privacy. But Hella’s return to Paris brings the affair to a crisis, one that rapidly spirals into tragedy. David struggles for self-knowledge during one long, dark night—“the night which is leading me to the most terrible morning of my life.” With a sharp, probing imagination, James Baldwin's now-classic narrative delves into the mystery of loving and creates a deeply moving story of death and passion that reveals the unspoken complexities of the human heart.";
+        } else if (bookNumber === 2) {
+            modalTitle.textContent = "WE ARE EVERYWHERE";
+            modalAuthor.textContent = "Author: Matthew Riemer and Leighton Brown";
+            modalDescription.textContent = "Through the lenses of protest, power, and pride, We Are Everywhere is an essential and empowering introduction to the history of the fight for queer liberation. Combining exhaustively researched narrative with meticulously curated photographs, the book traces queer activism from its roots in late-nineteenth-century Europe—long before the pivotal Stonewall Riots of 1969—to the gender warriors leading the charge today. Featuring more than 300 images from more than seventy photographers and twenty archives, this inclusive and intersectional book enables us to truly see queer history unlike anything before, with glimpses of activism in the decades preceding and following Stonewall, family life, marches, protests, celebrations, mourning, and Pride. By challenging many of the assumptions that dominate mainstream LGBTQ+ history, We Are Everywhere shows readers how they can—and must—honor the queer past in order to shape our liberated future.";
+        }
+else if (bookNumber === 3) {
+modalTitle.textContent = "BEYOND THE GENDER BINARY";
+            modalAuthor.textContent = "Author: Alok Vaid-Menon";
+modalDescription.textContent = "A controversial aspect of the queer experience is the concept of “labels,” and even the acronym LGBTQIA+ relies on labels that leave many in the community feeling silenced and ignored. This all stems from the gender binary, and in this pocket-sized book, Vaid-Menon breaks down why gender isn’t black or white." ;
+}
+else if (bookNumber === 4){
+modalTitle.textContent = "It Feels Good to Be Yourself: A Book about Gender Identity";
+modalAuthor.textContent = "Author: Theresa Thorn";
+modalDescription.textContent = "This sweet, straightforward exploration of gender identity will give children a fuller understanding of themselves and others. With child-friendly language and vibrant art, It Feels Good to Be Yourself provides young readers and parents alike with the vocabulary to discuss this important topic with sensitivity.";
+}
+
+        modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+    const modal = document.getElementById('myModal');
+    modal.style.display = 'none';
+}
+
+    function searchBooks() {
+        const searchInput = document.getElementById('searchInput').value.toLowerCase();
+        const books = document.querySelectorAll('.book');
+
+        books.forEach(book => {
+            const title = book.querySelector('.book-title').textContent.toLowerCase();
+            const author = book.querySelector('.book-author').textContent.toLowerCase();
+            const bookContainer = book.closest('.book');
+
+            if (title.includes(searchInput) || author.includes(searchInput)) {
+                bookContainer.style.display = 'flex';
+            } else {
+                bookContainer.style.display = 'none';
+            }
+        });
+    }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

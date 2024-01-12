@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="rainbow-flag.png">
+    <title>ConnectSociety</title>
+    <style>
+        
+        .nav-center {
+        display: flex;
+        justify-content: center;
+        gap: 150px; /* Adjust the gap as needed */
+    }
+
+    .nav-link {
+        text-decoration: none;
+        color: black;
+    }
+
+    .nav-bar {
+        list-style-type: none;
+        padding: 0;
+        text-align: center;
+    }
+    
+
+    .input-nav {
+        display: flex;
+        gap: 5px; /* Adjust the gap as needed */
+    }
+
+    .search-input {
+        display: flex;
+        gap: 5px; /* Adjust the gap as needed */
+    }
+
+    #searchInput {
+        width: 200px; /* Set the width as needed */
+    }
+
+    
+        /* Additional styling for the overlay */
+        .image-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: pink;
+            padding: 20px; /* Adjust as needed */
+            box-sizing: border-box;
+            opacity: 0.9; /* Adjust the opacity as needed */
+            z-index: 1; /* Ensure the overlay is above the image */
+        }
+
+        /* Position the overlay in the lower part of the image */
+        .overlay ul,
+        .overlay .article {
+            margin-left: 0; /* Adjust the percentage based on your needs */
+        }
+.main-body {
+        display: flex;
+        width: 100%;
+        margin: auto;
+        justify-content: space-between;
+        
+    }
+
+    .image-container {
+        width: 100%; /* Adjust as needed */
+        box-sizing: border-box;
+        padding: 10px;
+    }
+
+    .image-container img {
+        width: 100%;
+        height: auto;
+    }
+
+.image-container {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .image-container img {
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .image-container:hover img {
+        transform: scale(1.2); /* You can adjust the scale factor as needed */
+    }
+
+.small-h1 {
+        display: inline-block;
+        margin-right: 20px; /* Adjust the margin as needed */
+    }
+
+    .icons {
+        display: inline-flex;
+justify-content: center;
+        gap: 60px; /* Adjust the gap between icons as needed */
+    }
+
+    .icons svg {
+        width: 24px; /* Adjust the width of icons as needed */
+        height: 24px; /* Adjust the height of icons as needed */
+        fill: none;
+    }
+
+footer {
+        text-align: center; /* Center align the content in the footer */
+    }
+
+.about-us,
+    .subscribe {
+        max-width: 600px; /* Set a maximum width for content sections */
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .subscribe {
+        margin-left: 20px; /* Adjust the margin between sections */
+    }
+    .container {
+            text-align: center;
+        }
+
+        .top-section {
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+        .middle-section {
+            background-color: #f0f0f0;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .image-container {
+            border-radius: 15px; /* Adjust the value to control the roundness of the corners */
+            overflow: hidden; /* This property ensures that the border-radius is applied properly */
+            margin: 10px 0;
+        }
+
+        .img img {
+            width: 100%; /* Make sure the image takes the full width of its container */
+            border-radius: inherit; /* Inherit the border-radius from the parent container */
+        }
+
+        .bottom-section {
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+        .main-container {
+            display: flex;
+            justify-content: space-between; /* Adjust this based on your layout preferences */
+            flex-wrap: wrap;
+        }
+        body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.9);
+            padding-top: 60px;
+        }
+
+        /* Style for the modal content */
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 800px;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        /* Close button style */
+        .close {
+            color: white;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+    
+   
+</head>
+
+<body>
+    <!-- Title -->
+    <div class="text-center p-5">
+        <h1>ConnectSociety</h1>  
+    </div>
+    
+    <!-- Nav bar -->
+    <div class="nav-bar">
+        <ul class="nav nav-center">
+            <li class="nav-item">
+                <a class="nav-link" href="connect society.html">
+                    Home
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="reading.html">
+                    Readings
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <div class="input-nav">
+                    <div class="search-input">
+    <input type="text" id="searchInput" placeholder="Search">
+    <button type="button" class="btn btn-outline-secondary">Search</button>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <div class="icons-nav">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M9.19795 21.5H13.198V13.4901H16.8021L17.198 9.50977H13.198V7.5C13.198 6.94772 13.6457 6.5 14.198 6.5H17.198V2.5H14.198C11.4365 2.5 9.19795 4.73858 9.19795 7.5V9.50977H7.19795L6.80206 13.4901H9.19795V21.5Z"
+                            fill="currentColor" />
+                    </svg>
+
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M12 7C9.23858 7 7 9.23858 7 12C7 14.7614 9.23858 17 12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7ZM9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12Z"
+                            fill="currentColor" />
+                        <path
+                            d="M18 5C17.4477 5 17 5.44772 17 6C17 6.55228 17.4477 7 18 7C18.5523 7 19 6.55228 19 6C19 5.44772 18.5523 5 18 5Z"
+                            fill="currentColor" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M5 1C2.79086 1 1 2.79086 1 5V19C1 21.2091 2.79086 23 5 23H19C21.2091 23 23 21.2091 23 19V5C23 2.79086 21.2091 1 19 1H5ZM19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z"
+                            fill="currentColor" />
+                    </svg>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter-filled"
+                        width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path
+                            d="M14.058 3.41c-1.807 .767 -2.995 2.453 -3.056 4.38l-.002 .182l-.243 -.023c-2.392 -.269 -4.498 -1.512 -5.944 -3.531a1 1 0 0 0 -1.685 .092l-.097 .186l-.049 .099c-.719 1.485 -1.19 3.29 -1.017 5.203l.03 .273c.283 2.263 1.5 4.215 3.779 5.679l.173 .107l-.081 .043c-1.315 .663 -2.518 .952 -3.827 .9c-1.056 -.04 -1.446 1.372 -.518 1.878c3.598 1.961 7.461 2.566 10.792 1.6c4.06 -1.18 7.152 -4.223 8.335 -8.433l.127 -.495c.238 -.993 .372 -2.006 .401 -3.024l.003 -.332l.393 -.779l.44 -.862l.214 -.434l.118 -.247c.265 -.565 .456 -1.033 .574 -1.43l.014 -.056l.008 -.018c.22 -.593 -.166 -1.358 -.941 -1.358l-.122 .007a.997 .997 0 0 0 -.231 .057l-.086 .038a7.46 7.46 0 0 1 -.88 .36l-.356 .115l-.271 .08l-.772 .214c-1.336 -1.118 -3.144 -1.254 -5.012 -.554l-.211 .084z"
+                            stroke-width="0" fill="currentColor" />
+                    </svg>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-pinterest"
+                        width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M8 20l4 -9" />
+                        <path d="M10.7 14c.437 1.263 1.43 2 2.55 2c2.071 0 3.75 -1.554 3.75 -4a5 5 0 1 0 -9.7 1.7" />
+                        <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                    </svg>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+<hr class="black-horizontal-line">                                                                               
+    <!-- Featured Post -->
+    <div class="container">
+        <div class="top-section">
+            <h4>
+                <span class="top-text">Monthly Spotlight</span>
+            </h4>
+        </div>
+        <div class="post-container" onclick="redirectToPage('https:https:ukraineworld.org/en/articles/infowatch/ukraine-lgbt-rights')">
+        <div class="image-container img">
+            <img src="https://ukraineworld.org/storage/app/uploads/public/bc5/ec3/c55/thumb__2000_0_0_0_auto.jpg" style="width: 48%;>
+        </div>
+        <div class="bottom-section">
+            <h4>Dec 15</h4>
+            <p>
+                #Equality December Young women with rainbow flags attend Equality December.
+            </p>
+        </div>
+        <!-- Eye icon for views -->
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+class="bi bi-eye" viewBox="0 0 16 16">
+<path
+d="M8 1.5C2 1.5 0 8 0 8s2 6.5 8 6.5 8-6.5 8-6.5S14 1.5 8 1.5zM8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+<path
+d="M8 3C4.686 3 2 8 2 8s2.686 5 6 5 6-5 6-5S13.314 3 8 3zM7 8a1 1 0 1 1 2 0a1 1 0 1 1-2 0z" />
+</svg>
+19250
+
+
+<!-- Chat icon for comments -->
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+class="bi bi-chat" viewBox="0 0 16 16">
+<path
+d="M2 11c0 1.1.9 2 2 2h1v2.5l2.5-2.5H10a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v8z" />
+<path
+d="M15.553 1.105a1 1 0 0 1 0 1.414l-2 2a1 1 0 0 1-1.414-1.414l2-2a1 1 0 0 1 1.414 0z" />
+</svg>
+0
+
+                                   
+                                    <div class="heart-icon" onclick="toggleLike(event)"
+                                        style="display: inline-block;position: relative;top: -2px; overflow: visible;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="19" viewBox="0 0 19 19"
+                                            role="img">
+                                            <path
+                                                d="M9.44985848,15.5291774 C9.43911371,15.5362849 9.42782916,15.5449227 9.41715267,15.5553324 L9.44985848,15.5291774 Z M9.44985848,15.5291774 L9.49370677,15.4941118 C9.15422701,15.7147757 10.2318883,15.0314406 10.7297038,14.6971183 C11.5633567,14.1372547 12.3827081,13.5410755 13.1475707,12.9201001 C14.3829188,11.9171478 15.3570936,10.9445466 15.9707237,10.0482572 C16.0768097,9.89330422 16.1713564,9.74160032 16.2509104,9.59910798 C17.0201658,8.17755699 17.2088969,6.78363112 16.7499013,5.65913129 C16.4604017,4.81092573 15.7231445,4.11008901 14.7401472,3.70936139 C13.1379564,3.11266008 11.0475663,3.84092251 9.89976068,5.36430396 L9.50799408,5.8842613 L9.10670536,5.37161711 C7.94954806,3.89335486 6.00516066,3.14638251 4.31830373,3.71958508 C3.36517186,4.00646284 2.65439601,4.72068063 2.23964629,5.77358234 C1.79050315,6.87166888 1.98214559,8.26476279 2.74015555,9.58185512 C2.94777753,9.93163559 3.23221417,10.3090129 3.5869453,10.7089994 C4.17752179,11.3749196 4.94653811,12.0862394 5.85617417,12.8273544 C7.11233096,13.8507929 9.65858244,15.6292133 9.58280954,15.555334 C9.53938013,15.5129899 9.48608859,15.5 9.50042471,15.5 C9.5105974,15.5 9.48275828,15.5074148 9.44985848,15.5291774 Z">
+                                            </path>
+                                        </svg>
+<span>2278</span>
+                                    </div>
+
+                               
+                            </ul>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+    </div>
+  
+<hr class="black-horizontal-line">
+            <div class="main-body">
+<div class="image-container">
+                    <img src="https://philstarlife.s3.ap-east-1.amazonaws.com/photos/Brooke/2023/June/Pride%20Month/Pride%20Festival%20banner.jpg">
+<div class="overlay">
+                    <div class="article sub-article">
+                        <h4>PridePH Festival 2023</h4>
+                        <p>
+                            #LGBTPride2023 Come and join us in QC Memorial Circle this 2023 of December 20-25.
+                        </p>
+                    </div>
+                    <div class="footer">
+                        <div class="horizontal-line"></div>
+                        <div class="social-detail-list">
+
+<!-- Eye icon for views -->
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+class="bi bi-eye" viewBox="0 0 16 16">
+<path
+d="M8 1.5C2 1.5 0 8 0 8s2 6.5 8 6.5 8-6.5 8-6.5S14 1.5 8 1.5zM8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+<path
+d="M8 3C4.686 3 2 8 2 8s2.686 5 6 5 6-5 6-5S13.314 3 8 3zM7 8a1 1 0 1 1 2 0a1 1 0 1 1-2 0z" />
+</svg>
+8,000
+
+
+<!-- Chat icon for comments -->
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+class="bi bi-chat" viewBox="0 0 16 16">
+<path
+d="M2 11c0 1.1.9 2 2 2h1v2.5l2.5-2.5H10a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v8z" />
+<path
+d="M15.553 1.105a1 1 0 0 1 0 1.414l-2 2a1 1 0 0 1-1.414-1.414l2-2a1 1 0 0 1 1.414 0z" />
+</svg>
+0
+
+                                   
+                                    <div class="heart-icon" onclick="toggleLike(event)"
+                                        style="display: inline-block;position: relative;top: -2px; overflow: visible;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="19" viewBox="0 0 19 19"
+                                            role="img">
+                                            <path
+                                                d="M9.44985848,15.5291774 C9.43911371,15.5362849 9.42782916,15.5449227 9.41715267,15.5553324 L9.44985848,15.5291774 Z M9.44985848,15.5291774 L9.49370677,15.4941118 C9.15422701,15.7147757 10.2318883,15.0314406 10.7297038,14.6971183 C11.5633567,14.1372547 12.3827081,13.5410755 13.1475707,12.9201001 C14.3829188,11.9171478 15.3570936,10.9445466 15.9707237,10.0482572 C16.0768097,9.89330422 16.1713564,9.74160032 16.2509104,9.59910798 C17.0201658,8.17755699 17.2088969,6.78363112 16.7499013,5.65913129 C16.4604017,4.81092573 15.7231445,4.11008901 14.7401472,3.70936139 C13.1379564,3.11266008 11.0475663,3.84092251 9.89976068,5.36430396 L9.50799408,5.8842613 L9.10670536,5.37161711 C7.94954806,3.89335486 6.00516066,3.14638251 4.31830373,3.71958508 C3.36517186,4.00646284 2.65439601,4.72068063 2.23964629,5.77358234 C1.79050315,6.87166888 1.98214559,8.26476279 2.74015555,9.58185512 C2.94777753,9.93163559 3.23221417,10.3090129 3.5869453,10.7089994 C4.17752179,11.3749196 4.94653811,12.0862394 5.85617417,12.8273544 C7.11233096,13.8507929 9.65858244,15.6292133 9.58280954,15.555334 C9.53938013,15.5129899 9.48608859,15.5 9.50042471,15.5 C9.5105974,15.5 9.48275828,15.5074148 9.44985848,15.5291774 Z">
+                                            </path>
+                                        </svg>
+<span>651</span>
+                                    </div>
+
+                               
+                            </ul>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+<div class="main-body">
+    <div class="image-container">
+        <img src="https://apicms.thestar.com.my/uploads/images/2022/06/05/1611425.jpg">
+        <div class="overlay">
+            <div class="article sub-article">
+                <h4>Massive Pride Parade in Bangkok</h4>
+                <p>#LGBTCommunity Pride Parade in Bangkok, Thailand.</p>
+            </div>
+            <div class="footer">
+                <div class="horizontal-line"></div>
+                <div class="social-detail-list">
+                        <!-- Eye icon for views -->
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+class="bi bi-eye" viewBox="0 0 16 16">
+<path
+d="M8 1.5C2 1.5 0 8 0 8s2 6.5 8 6.5 8-6.5 8-6.5S14 1.5 8 1.5zM8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+<path
+d="M8 3C4.686 3 2 8 2 8s2.686 5 6 5 6-5 6-5S13.314 3 8 3zM7 8a1 1 0 1 1 2 0a1 1 0 1 1-2 0z" />
+</svg>
+10,587
+
+
+<!-- Chat icon for comments -->
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+class="bi bi-chat" viewBox="0 0 16 16">
+<path
+d="M2 11c0 1.1.9 2 2 2h1v2.5l2.5-2.5H10a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v8z" />
+<path
+d="M15.553 1.105a1 1 0 0 1 0 1.414l-2 2a1 1 0 0 1-1.414-1.414l2-2a1 1 0 0 1 1.414 0z" />
+</svg>
+0
+
+                                   
+                                    <div class="heart-icon" onclick="toggleLike(event)"
+                                        style="display: inline-block;position: relative;top: -2px; overflow: visible;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="19" viewBox="0 0 19 19"
+                                            role="img">
+                                            <path
+                                                d="M9.44985848,15.5291774 C9.43911371,15.5362849 9.42782916,15.5449227 9.41715267,15.5553324 L9.44985848,15.5291774 Z M9.44985848,15.5291774 L9.49370677,15.4941118 C9.15422701,15.7147757 10.2318883,15.0314406 10.7297038,14.6971183 C11.5633567,14.1372547 12.3827081,13.5410755 13.1475707,12.9201001 C14.3829188,11.9171478 15.3570936,10.9445466 15.9707237,10.0482572 C16.0768097,9.89330422 16.1713564,9.74160032 16.2509104,9.59910798 C17.0201658,8.17755699 17.2088969,6.78363112 16.7499013,5.65913129 C16.4604017,4.81092573 15.7231445,4.11008901 14.7401472,3.70936139 C13.1379564,3.11266008 11.0475663,3.84092251 9.89976068,5.36430396 L9.50799408,5.8842613 L9.10670536,5.37161711 C7.94954806,3.89335486 6.00516066,3.14638251 4.31830373,3.71958508 C3.36517186,4.00646284 2.65439601,4.72068063 2.23964629,5.77358234 C1.79050315,6.87166888 1.98214559,8.26476279 2.74015555,9.58185512 C2.94777753,9.93163559 3.23221417,10.3090129 3.5869453,10.7089994 C4.17752179,11.3749196 4.94653811,12.0862394 5.85617417,12.8273544 C7.11233096,13.8507929 9.65858244,15.6292133 9.58280954,15.555334 C9.53938013,15.5129899 9.48608859,15.5 9.50042471,15.5 C9.5105974,15.5 9.48275828,15.5074148 9.44985848,15.5291774 Z">
+                                            </path>
+                                        </svg>
+<span>744</span>
+                                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        </div>
+
+        <div style="display: flex; justify-content: center; margin-top: 20px;">
+            <button id="showMorePostButton" onclick="showMorePosts()" style="width: 460px;">More Posts</button>
+        </div>
+
+    <!-- Additional Posts (Initially hidden) -->
+    <div class="main-body" style="display: none; justify-content: space-between;">
+        <!-- Add more posts here as needed -->
+        <hr class="black-horizontal-line">
+<div class="image-container" style="width: 48%;">
+        <img src="https://cdn.tripster.com/travelguide/wp-content/uploads/2022/06/NYC-Pride-Festival-New-York-City-New-York-2.jpg">
+        <div class="overlay">
+            <div class="article sub-article">
+                <h4>New York City Pride Festival 2023</h4>
+                <p>#NYCPride</p>
+            </div>
+            <div class="footer">
+                <div class="horizontal-line"></div>
+                <div class="social-detail-list">
+                        <!-- Eye icon for views -->
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+class="bi bi-eye" viewBox="0 0 16 16">
+<path
+d="M8 1.5C2 1.5 0 8 0 8s2 6.5 8 6.5 8-6.5 8-6.5S14 1.5 8 1.5zM8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+<path
+d="M8 3C4.686 3 2 8 2 8s2.686 5 6 5 6-5 6-5S13.314 3 8 3zM7 8a1 1 0 1 1 2 0a1 1 0 1 1-2 0z" />
+</svg>
+8732
+
+
+<!-- Chat icon for comments -->
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+class="bi bi-chat" viewBox="0 0 16 16">
+<path
+d="M2 11c0 1.1.9 2 2 2h1v2.5l2.5-2.5H10a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v8z" />
+<path
+d="M15.553 1.105a1 1 0 0 1 0 1.414l-2 2a1 1 0 0 1-1.414-1.414l2-2a1 1 0 0 1 1.414 0z" />
+</svg>
+363
+
+                                   
+                                    <div class="heart-icon" onclick="toggleLike(event)"
+                                        style="display: inline-block;position: relative;top: -2px; overflow: visible;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="19" viewBox="0 0 19 19"
+                                            role="img">
+                                            <path
+                                                d="M9.44985848,15.5291774 C9.43911371,15.5362849 9.42782916,15.5449227 9.41715267,15.5553324 L9.44985848,15.5291774 Z M9.44985848,15.5291774 L9.49370677,15.4941118 C9.15422701,15.7147757 10.2318883,15.0314406 10.7297038,14.6971183 C11.5633567,14.1372547 12.3827081,13.5410755 13.1475707,12.9201001 C14.3829188,11.9171478 15.3570936,10.9445466 15.9707237,10.0482572 C16.0768097,9.89330422 16.1713564,9.74160032 16.2509104,9.59910798 C17.0201658,8.17755699 17.2088969,6.78363112 16.7499013,5.65913129 C16.4604017,4.81092573 15.7231445,4.11008901 14.7401472,3.70936139 C13.1379564,3.11266008 11.0475663,3.84092251 9.89976068,5.36430396 L9.50799408,5.8842613 L9.10670536,5.37161711 C7.94954806,3.89335486 6.00516066,3.14638251 4.31830373,3.71958508 C3.36517186,4.00646284 2.65439601,4.72068063 2.23964629,5.77358234 C1.79050315,6.87166888 1.98214559,8.26476279 2.74015555,9.58185512 C2.94777753,9.93163559 3.23221417,10.3090129 3.5869453,10.7089994 C4.17752179,11.3749196 4.94653811,12.0862394 5.85617417,12.8273544 C7.11233096,13.8507929 9.65858244,15.6292133 9.58280954,15.555334 C9.53938013,15.5129899 9.48608859,15.5 9.50042471,15.5 C9.5105974,15.5 9.48275828,15.5074148 9.44985848,15.5291774 Z">
+                                            </path>
+                                        </svg>
+<span>8321</span>
+                                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+
+
+<script>
+    function showMorePosts() {
+        // Show the additional posts by setting their display property to "flex"
+        document.querySelectorAll('.main-body').forEach(function(element) {
+            element.style.display = 'flex';
+        });
+
+        // Hide the "More Posts" button by setting its display property to "none"
+        document.getElementById("showMorePostButton").style.display = "none";
+    }
+</script>
+    <!-- Footer -->
+<footer>
+    <!-- Drop me a line -->
+    <div style="border-top: 1px solid black; margin-top: 30px; display: flex; justify-content: center;">
+        <div style="display: flex; flex-direction: column; justify-content: center; ">
+            <div style="display: flex;justify-content: center;margin: 50px; cursor: pointer;" onclick="scrollToTop()">
+                <svg preserveAspectRatio="none" data-bbox="72.5 20 55 160" viewBox="72.5 20 55 160" height="40" width="15"
+                    xmlns="http://www.w3.org/2000/svg" data-type="shape" role="img" aria-label="Back to top">
+                    <g>
+                        <path
+                            d="M127.5 49.186L100 20 72.5 49.186l2.957 2.808 22.116-23.476V180h4.854V28.518l22.116 23.476 2.957-2.808z">
+                        </path>
+                    </g>
+                </svg>
+            </div>
+            <h1 class="small-h1">ConnectSociety</h1>
+<div class="icons">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M9.19795 21.5H13.198V13.4901H16.8021L17.198 9.50977H13.198V7.5C13.198 6.94772 13.6457 6.5 14.198 6.5H17.198V2.5H14.198C11.4365 2.5 9.19795 4.73858 9.19795 7.5V9.50977H7.19795L6.80206 13.4901H9.19795V21.5Z"
+                        fill="currentColor" />
+                </svg>
+
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M12 7C9.23858 7 7 9.23858 7 12C7 14.7614 9.23858 17 12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7ZM9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12Z"
+                        fill="currentColor" />
+                    <path
+                        d="M18 5C17.4477 5 17 5.44772 17 6C17 6.55228 17.4477 7 18 7C18.5523 7 19 6.55228 19 6C19 5.44772 18.5523 5 18 5Z"
+                        fill="currentColor" />
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M5 1C2.79086 1 1 2.79086 1 5V19C1 21.2091 2.79086 23 5 23H19C21.2091 23 23 21.2091 23 19V5C23 2.79086 21.2091 1 19 1H5ZM19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z"
+                        fill="currentColor" />
+                </svg>
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter-filled"
+                    width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path
+                        d="M14.058 3.41c-1.807 .767 -2.995 2.453 -3.056 4.38l-.002 .182l-.243 -.023c-2.392 -.269 -4.498 -1.512 -5.944 -3.531a1 1 0 0 0 -1.685 .092l-.097 .186l-.049 .099c-.719 1.485 -1.19 3.29 -1.017 5.203l.03 .273c.283 2.263 1.5 4.215 3.779 5.679l.173 .107l-.081 .043c-1.315 .663 -2.518 .952 -3.827 .9c-1.056 -.04 -1.446 1.372 -.518 1.878c3.598 1.961 7.461 2.566 10.792 1.6c4.06 -1.18 7.152 -4.223 8.335 -8.433l.127 -.495c.238 -.993 .372 -2.006 .401 -3.024l.003 -.332l.393 -.779l.44 -.862l.214 -.434l.118 -.247c.265 -.565 .456 -1.033 .574 -1.43l.014 -.056l.008 -.018c.22 -.593 -.166 -1.358 -.941 -1.358l-.122 .007a.997 .997 0 0 0 -.231 .057l-.086 .038a7.46 7.46 0 0 1 -.88 .36l-.356 .115l-.271 .08l-.772 .214c-1.336 -1.118 -3.144 -1.254 -5.012 -.554l-.211 .084z"
+                        stroke-width="0" fill="currentColor" />
+                </svg>
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-pinterest" width="24"
+                    height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M8 20l4 -9" />
+                    <path d="M10.7 14c.437 1.263 1.43 2 2.55 2c2.071 0 3.75 -1.554 3.75 -4a5 5 0 1 0 -9.7 1.7" />
+                    <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                </svg>
+            </div>
+
+        <!-- About Us -->
+        <div class="about-us">
+            <h3>About Us</h3>
+            <p>
+                ConnectSociety is a society for each of us. <br>Feel free to have equal opportunities and rights. <br> Join us in our mission to connect
+                people <br> and build a world for everyone.
+            </p>
+        </div>
+ 
+
+    </div>
+    </footer>
+    <script>
+        function scrollToTop() {
+            window.scrollTo(0, 0);
+        }
+        function handleEmptyInput2(event) {
+
+            const input = event.target.parentElement
+
+            if (event.target.value.trim() === "") {
+                input.classList.add("invalid");
+                input.classList.remove("valid");
+            }
+        }
+        function handleFilledInput2(event) {
+
+            const input = event.target.parentElement
+            if (event.target.value.trim() !== "") {
+                input.classList.add("valid");
+                input.classList.remove("invalid");
+            }
+        }
+        function toggleLike(event) {
+            const heart = event.target
+            const parent = event.target.parentElement.parentElement.parentElement
+            const isLiked = heart.classList.contains('liked')
+            parent.firstElementChild.innerHTML = parseInt(parent.firstElementChild.innerHTML) + (isLiked ? -1 : 1)
+            heart.classList.toggle('liked')
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
